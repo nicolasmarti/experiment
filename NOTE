@@ -1,0 +1,8 @@
+* ocaml in python
+* simple language ~>  ~ stratpy
+* Llvm ~> Jit-Compile + ext. call
+       ~> Ptx Kernel / device + ext. call
+* Rust & Julia ~> ext. RT
+* GC (C) ~> binding
+
+~> rewriting gc in rust
