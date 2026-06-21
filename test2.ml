@@ -30,6 +30,4 @@ module Type = struct
     | TyList t -> 1 + tysz t
   ;;
 
-  let f1 (s: string): ty = TyVar(s);;
-
 end;;

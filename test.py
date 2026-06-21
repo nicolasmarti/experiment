@@ -242,7 +242,7 @@ pprint( "exec:", exec_ptr )
 cexec = CFUNCTYPE(c_int, c_ulonglong)(exec_ptr)
 import time
 start_time = time.time()
-cexec( 200 )
+cexec( 3 )
 pprint( time.time() - start_time )
 
 pprint("#################################")
@@ -271,7 +271,7 @@ pprint( type( h.formula.Ftrue ) )
 m2 = import_ml("test2")
 class Type(m2.Type, m2.Type.T):
     pass
-print("Type:", dir(Type))
+print("Type:", ", ".join([str(i) for i in dir(Type) if not "__" in i]))
 print(
     Type.tysz(
         Type.TyTuple(

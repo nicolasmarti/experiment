@@ -130,7 +130,7 @@ open Llvm_scalar_opts;;
 open Llvm_all_backends;;
 
 let init_llvm() =
-  (*printf "Initialized OCaml LLVM\n";*)
+  printf "Initialized OCaml LLVM\n";
   Llvm_all_backends.initialize()
 
 (*************)
