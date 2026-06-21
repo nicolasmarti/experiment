@@ -16,15 +16,12 @@ import ocaml
 # allows to open modules in import_ml
 ocaml.require("why3")
 
+# not sure what is usefull
 ocaml.require("llvm")
 ocaml.require("llvm.analysis")
-#ocaml.require("llvm.analysis.shared")
 ocaml.require("llvm.executionengine")
-#ocaml.require("llvm.executionengine.shared")
 ocaml.require("llvm.target")
-#ocaml.require("llvm.target.shared")
 ocaml.require("llvm.scalar_opts")
-#ocaml.require("llvm.scalar_opts.shared")
 ocaml.require("llvm.all_backends")
 ocaml.require("llvm.all_backends.shared")
 
@@ -245,7 +242,7 @@ pprint( "exec:", exec_ptr )
 cexec = CFUNCTYPE(c_int, c_ulonglong)(exec_ptr)
 import time
 start_time = time.time()
-cexec( 3 )
+cexec( 200 )
 pprint( time.time() - start_time )
 
 pprint("#################################")
@@ -270,6 +267,21 @@ h = import_ml("harrison")
 pprint( dir( h )[:10] )
 pprint( type( h.formula ) )
 pprint( type( h.formula.Ftrue ) )
+
+m2 = import_ml("test2")
+class Type(m2.Type, m2.Type.T):
+    pass
+print("Type:", dir(Type))
+print(
+    Type.tysz(
+        Type.TyTuple(
+            [Type.TyVar("s1"),
+             Type.TyVar("s2"),
+             Type.TyList(Type.TyInt())
+             ]
+        )
+    )
+)
 
 ###
 
