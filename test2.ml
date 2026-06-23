@@ -1,13 +1,10 @@
 module Type = struct
   
   module T = struct
-    type ty =
-      
+    type ty =      
       | TyInt
       | TyFloat
-
-      | TyVar of string
-    
+      | TyVar of string    
       | TyTuple of ty list
       | TyList of ty
     ;;
@@ -31,3 +28,29 @@ module Type = struct
   ;;
 
 end;;
+
+module Term = struct
+  
+  module T = struct
+    type te =      
+      | TeInt of int
+      | TeFloat of float
+      | TeTuple of te list
+      | TeList of te list
+    ;;
+  end;;
+  
+  open T;;
+  open Type;;
+  open Type.T;;
+
+  let rec type_infer (t: te): ty =
+    match t with
+    | TeInt _ -> TyInt
+    | TeFloat _ -> TyFloat
+    | TeTuple l -> TyTuple (List.map  type_infer l)
+    | TeList ts -> TyList (type_infer (List.hd ts))
+  ;;
+  
+end;;
+

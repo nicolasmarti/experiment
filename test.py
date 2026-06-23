@@ -272,16 +272,32 @@ m2 = import_ml("test2")
 class Type(m2.Type, m2.Type.T):
     pass
 print("Type:", ", ".join([str(i) for i in dir(Type) if not "__" in i]))
-print(
-    Type.tysz(
-        Type.TyTuple(
-            [Type.TyVar("s1"),
-             Type.TyVar("s2"),
-             Type.TyList(Type.TyInt())
-             ]
-        )
-    )
+
+class Term(m2.Term, m2.Term.T):
+    pass
+print("Term:", ", ".join([str(i) for i in dir(Term) if not "__" in i]))
+
+####
+
+ty = Type.TyTuple(
+    [Type.TyVar("s1"),
+     Type.TyVar("s2"),
+     Type.TyList(Type.TyInt())
+     ]
 )
+print(
+    Type.tysz(ty)
+)
+
+####
+
+te = Term.TeTuple([
+    Term.TeInt(9),
+    Term.TeFloat(0.0),
+    Term.TeList([Term.TeInt(6), Term.TeInt(8)])
+])
+te_ty = Term.type_infer(te)
+print( te_ty )
 
 ###
 
