@@ -268,6 +268,8 @@ pprint( dir( h )[:10] )
 pprint( type( h.formula ) )
 pprint( type( h.formula.Ftrue ) )
 
+print("-----")
+
 m2 = import_ml("test2")
 class Type(m2.Type, m2.Type.T):
     pass
@@ -286,7 +288,7 @@ ty = Type.TyTuple(
      ]
 )
 print(
-    Type.tysz(ty)
+    ty, Type.tysz(ty)
 )
 
 ####
@@ -297,7 +299,7 @@ te = Term.TeTuple([
     Term.TeList([Term.TeInt(6), Term.TeInt(8)])
 ])
 te_ty = Term.type_infer(te)
-print( te_ty )
+print( te, te_ty, Type.tysz(te_ty) )
 
 ###
 
