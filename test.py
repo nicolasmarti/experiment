@@ -276,7 +276,20 @@ class Type(m2.Type, m2.Type.T):
 print("Type:", ", ".join([str(i) for i in dir(Type) if not "__" in i]))
 
 class Term(m2.Term, m2.Term.T):
-    pass
+
+    def __init__(self, te, ty = None):
+        self.te = te
+        if ty is None:
+            self.ty = Term.type_infer(te)
+        else:
+            self.ty = ty
+
+    def __str__(self):
+        return "%s::%s" % (str(self.te), str(self.ty))
+            
+    def __add__(self, o):
+        return self
+    
 print("Term:", ", ".join([str(i) for i in dir(Term) if not "__" in i]))
 
 ####
@@ -293,13 +306,16 @@ print(
 
 ####
 
-te = Term.TeTuple([
-    Term.TeInt(9),
-    Term.TeFloat(0.0),
-    Term.TeList([Term.TeInt(6), Term.TeInt(8)])
-])
-te_ty = Term.type_infer(te)
+te = Term(
+    Term.TeTuple([
+        Term.TeInt(9),
+        Term.TeFloat(0.0),
+        Term.TeList([Term.TeInt(6), Term.TeInt(8)])
+    ])
+)
+te_ty = Term.type_infer(te.te)
 print( te, te_ty, Type.tysz(te_ty) )
+print(te + te)
 
 ###
 

@@ -2,11 +2,11 @@ module Type = struct
   
   module T = struct
     type ty =      
-      | TyInt
-      | TyFloat
-      | TyVar of string    
-      | TyTuple of ty list
-      | TyList of ty
+      | TyInt: ty
+      | TyFloat: ty
+      | TyVar: string -> ty
+      | TyTuple: ty list -> ty
+      | TyList: ty -> ty
     ;;
   end;;
   
@@ -33,10 +33,10 @@ module Term = struct
   
   module T = struct
     type te =      
-      | TeInt of int
-      | TeFloat of float
-      | TeTuple of te list
-      | TeList of te list
+      | TeInt: int -> te
+      | TeFloat: float -> te
+      | TeTuple: te list -> te
+      | TeList: te list -> te
     ;;
   end;;
   
