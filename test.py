@@ -25,8 +25,6 @@ ocaml.require("llvm.scalar_opts")
 ocaml.require("llvm.all_backends")
 ocaml.require("llvm.all_backends.shared")
 
-ocaml.require("poussin")
-
 def import_ml( name ):
     import ocaml
     try:
@@ -52,7 +50,7 @@ from llvmlite import ir
 from ctypes import CFUNCTYPE, c_double, c_double, cast, c_void_p, c_ulonglong, c_longlong, POINTER, cdll, c_int, c_char
 
 # All these initializations are required for code generation!
-llvm.initialize()
+#llvm.initialize()
 llvm.initialize_native_target()
 llvm.initialize_native_asmprinter()  # yes, even this one
 
